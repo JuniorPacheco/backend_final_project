@@ -2,7 +2,7 @@ const { default: axios } = require("axios");
 const { getConfig } = require("../utils/token");
 
 const getTracksRecomendations = async (seedGenresString) => {
-  const url = new URL("https://api.spotify.com/v1/recommendations");
+  const url = new URL("https://api.spotify.com/v1/recommendations?limit=10");
 
   const config = await getConfig();
 
