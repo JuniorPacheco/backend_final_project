@@ -24,15 +24,23 @@ const getUserById = async (id) => {
 };
 
 const createUser = async (data) => {
-  const newUser = await Users.create({
-    ...data,
-    id: uuid.v4(),
-    password: hashPassword(data.password),
+  const [newUser, created] = await Users.findOrCreate({
+    where: {
+      email: data.email,
+    },
+    defaults: {
+      ...data,
+      id: uuid.v4(),
+      password: hashPassword(data.password),
+    },
   });
+
+  if(!created) return null
+
   const responseNewUser = {
     name: newUser.name,
-    email: newUser.email
-  }
+    email: newUser.email,
+  };
   return responseNewUser;
 };
 
@@ -78,5 +86,5 @@ module.exports = {
   getUserById,
   deleteUser,
   editMyUser,
-  getUserByEmail
+  getUserByEmail,
 };

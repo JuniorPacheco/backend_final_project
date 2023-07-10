@@ -1,30 +1,18 @@
 const userControllers = require("../controllers/users");
 
-const register = (req, res) => {
-  const data = req.body;
-  if (!data) {
-    return res.status(400).json({ message: "Missing Data" });
-  } else if (!data.name || !data.email || !data.password) {
-    return res.status(400).json({
-      message: "All fields must be completed",
-      fields: {
-        name: "string",
-        email: "examle@examle.com",
-        password: "string",
-      },
+const register = async (req, res) => {
+  try{
+    const data = req.body;
+    const response = await userControllers.createUser(data);
+
+    if(!response) return res.status(409).json({ message: "This email is in use" });
+
+    res.status(201).json({
+      message: "User created succesfully",
+      user: response,
     });
-  } else {
-    userControllers
-      .createUser(data)
-      .then((response) => {
-        res.status(201).json({
-          message: "User created succesfully",
-          user: response,
-        });
-      })
-      .catch((err) => {
-        res.status(400).json({ err });
-      });
+  }catch(err){
+    return res.status(500).json({ message: err });
   }
 };
 
