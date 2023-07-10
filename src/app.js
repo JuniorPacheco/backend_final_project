@@ -9,16 +9,16 @@ const { rateLimit } = require("express-rate-limit");
 const port = process.env.PORT || 3000;
 
 const limiter = rateLimit({
-	windowMs: 5 * 60 * 1000, // 5 minutes
-	max: 100,
-  message: "Too many request, wait 5 minutes to continue"
-})
+  windowMs: 5 * 60 * 1000, // 5 minutes
+  max: 100,
+  message: "Too many request, wait 5 minutes to continue",
+});
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use(limiter)
+app.use(limiter);
 
 app.use("/api", require("./routes"));
 
@@ -32,7 +32,7 @@ db.authenticate()
 
 db.sync({ force: true })
   .then(() => {
-    generateData();
+    // generateData();
   })
   .catch((err) => console.log(err));
 
