@@ -1,9 +1,8 @@
 const express = require("express");
 const authServices = require("../services/auth");
 const { register } = require("../services/user");
-const passport = require("passport");
+const cors = require("cors");
 const { validatorLogin, validatorRegister } = require("../validators/auth");
-require("../middleware/auth")(passport);
 
 const router = express.Router();
 
@@ -11,6 +10,6 @@ const router = express.Router();
 
 router.post("/register", validatorRegister, register);
 
-router.post("/login", validatorLogin, authServices.login);
+router.post("/login", cors(), validatorLogin, authServices.login);
 
 module.exports = router;
