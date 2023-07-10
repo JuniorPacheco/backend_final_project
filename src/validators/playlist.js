@@ -36,7 +36,7 @@ const validatorCreatePlaylist = [
 const validatorGetPlaylistById = [
   check("id")
     .exists()
-    .withMessage("This field is required")
+    .withMessage("This param is required")
     .isUUID("4")
     .withMessage("Incorrect format parameter id"),
   (req, res, next) => validationResults(req, res, next),
@@ -45,9 +45,42 @@ const validatorGetPlaylistById = [
 const validatorDeletePlaylistById = [
   check("id")
     .exists()
-    .withMessage("This field is required")
+    .withMessage("This param is required")
     .isUUID("4")
     .withMessage("Incorrect format parameter id"),
+  (req, res, next) => validationResults(req, res, next),
+];
+
+const validatorEditPlaylistById = [
+  check("id")
+    .exists()
+    .withMessage("This param is required")
+    .isUUID("4")
+    .withMessage("Incorrect format parameter id"),
+  check("title")
+    .optional()
+    .isLength({ max: 50, min: 1 })
+    .withMessage(
+      "The field must have a value between the range of 1 to 50 characters"
+    ),
+  check("message")
+    .optional()
+    .isLength({ max: 200, min: 1 })
+    .withMessage(
+      "The field must have a value between the range of 1 to 200 characters"
+    ),
+  check("from")
+    .optional()
+    .isLength({ max: 50, min: 1 })
+    .withMessage(
+      "The field must have a value between the range of 1 to 50 characters"
+    ),
+  check("to")
+    .optional()
+    .isLength({ max: 50, min: 1 })
+    .withMessage(
+      "The field must have a value between the range of 1 to 50 characters"
+    ),
   (req, res, next) => validationResults(req, res, next),
 ];
 
@@ -55,4 +88,5 @@ module.exports = {
   validatorCreatePlaylist,
   validatorGetPlaylistById,
   validatorDeletePlaylistById,
+  validatorEditPlaylistById,
 };

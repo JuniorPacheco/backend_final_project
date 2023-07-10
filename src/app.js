@@ -9,7 +9,7 @@ const { rateLimit } = require("express-rate-limit");
 const port = process.env.PORT || 3000;
 
 const limiter = rateLimit({
-	windowMs: 5 * 60 * 1000, // 15 minutes
+	windowMs: 5 * 60 * 1000, // 5 minutes
 	max: 100,
   message: "Too many request, wait 5 minutes to continue"
 })

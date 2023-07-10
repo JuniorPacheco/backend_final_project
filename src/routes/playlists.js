@@ -1,8 +1,8 @@
 const express = require("express");
-const { getById, getAllByUser, deleteById: deletePlaylistById, create } = require("../services/playlist");
+const { getById, getAllByUser, deleteById: deletePlaylistById, create, edit } = require("../services/playlist");
 const passport = require("passport");
 const { deleteById } = require("../services/playlistTrack");
-const { validatorCreatePlaylist, validatorGetPlaylistById, validatorDeletePlaylistById } = require("../validators/playlist");
+const { validatorCreatePlaylist, validatorGetPlaylistById, validatorDeletePlaylistById, validatorEditPlaylistById } = require("../validators/playlist");
 require("../middleware/auth")(passport);
 
 const router = express.Router();
@@ -12,6 +12,8 @@ router.post("/", passport.authenticate("jwt", { session: false }), validatorCrea
 router.get("/me", passport.authenticate("jwt", { session: false }), getAllByUser);
 
 router.get("/:id", passport.authenticate("jwt", { session: false }), validatorGetPlaylistById, getById);
+
+router.patch("/:id", passport.authenticate("jwt", { session: false }), validatorEditPlaylistById, edit);
 
 router.delete("/:id", passport.authenticate("jwt", { session: false }), validatorDeletePlaylistById, deletePlaylistById);
 

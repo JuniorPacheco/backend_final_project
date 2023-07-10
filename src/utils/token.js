@@ -2,7 +2,6 @@ const { default: axios } = require("axios");
 require("dotenv").config();
 
 const getConfig = async () => {
-  // console.log({data: process.env.CLIENT_ID})
   const {
     data: { access_token },
   } = await axios.post(

@@ -8,8 +8,8 @@ const getPlaylistById = async (playlistId) => {
       id: playlistId,
     },
   });
-  
-  if(!playlist) return null
+
+  if (!playlist) return null;
 
   const tracks = await getTracksByPlaylist(playlistId);
 
@@ -49,7 +49,7 @@ const createPlaylist = async (UserId, playlistInfo) => {
     ...playlistInfo,
   });
 
-  return newPlaylist
+  return newPlaylist;
 };
 
 const deletePlaylist = async (playlistId) => {
@@ -62,9 +62,16 @@ const deletePlaylist = async (playlistId) => {
   return response;
 };
 
+const editPlaylist = async (playlistId, data) => {
+  const response = await Playlists.update(data, { where: { id: playlistId } });
+
+  return response;
+};
+
 module.exports = {
   getPlaylistById,
   createPlaylist,
   getAllPlaylistsByUser,
   deletePlaylist,
+  editPlaylist
 };
