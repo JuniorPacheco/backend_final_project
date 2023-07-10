@@ -5,6 +5,6 @@ require("../middleware/auth")(passport);
 
 const router = express.Router();
 
-router.get("/:id", getById);
+router.get("/:id", passport.authenticate("jwt", { session: false }),  getById);
 
 module.exports = router;
