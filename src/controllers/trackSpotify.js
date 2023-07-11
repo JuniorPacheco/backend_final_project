@@ -38,16 +38,23 @@ const comprobateGenreSeeds = async (seedGenresString) => {
 const getTrackById = async (trackId) => {
   const config = await getConfig();
 
-  const { data } = await axios.get(
+  const { data: track } = await axios.get(
     `https://api.spotify.com/v1/tracks/${trackId}`,
     config
   );
-  
-  return data;
+
+  const { data: relatedSongs } = await axios.get(
+    `https://api.spotify.com/v1/recommendations?limit=10&seed_tracks=${track.id}`,
+    config
+  );
+
+  track.relatedSongs = relatedSongs.tracks;
+
+  return track;
 };
 
 module.exports = {
   getTracksRecomendations,
   comprobateGenreSeeds,
-  getTrackById
+  getTrackById,
 };
