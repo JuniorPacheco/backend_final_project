@@ -42,17 +42,6 @@ const getAllBySearch = async (req, res) => {
   try{
     const query = req.query
 
-    // if(!query.q) return res.status(400).json({ message: "The search parameter q is required" });
-    // console.log({limit: query.limit})
-
-    // if(query.limit === "") return res.status(400).json({ message: "you need to add a number value in the limit parameter that is in the range 1-50" });
-
-    // if(query.limit !== undefined){
-    //   if(isNaN(Number(query.limit))) return res.status(400).json({ message: "Invalid value in limit parameter" });
-
-    //   if(Number(query.limit) < 1 || Number(query.limit) > 50) return res.status(400).json({ message: "the value of the limit parameter is outside the range 1 - 50, enter a value within the range" });
-    // }
-
     const data = await searchTrack(query)
 
     return res.status(200).json(data);

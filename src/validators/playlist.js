@@ -33,8 +33,8 @@ const validatorCreatePlaylist = [
   check("tracks")
     .exists()
     .withMessage("This field is required")
-    .isArray()
-    .withMessage("This field only accepts an array"),
+    .isArray({min: 1})
+    .withMessage("This field only accepts an array with at least 1 element"),
   check("tracks.*.id")
     .exists()
     .withMessage("Each array position must have an id"),

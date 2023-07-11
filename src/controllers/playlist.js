@@ -12,7 +12,7 @@ const getPlaylistById = async (playlistId) => {
   if (!playlist) return null;
 
   const tracks = await getTracksByPlaylist(playlistId);
-  console.log({tracks})
+
   const responsePlaylist = {
     id: playlist.id,
     title: playlist.title,
