@@ -1,6 +1,6 @@
 const uuid = require("uuid");
 const Playlists = require("../models/playlist");
-const { getTracksByPlaylist } = require("./track");
+const { getTracksByPlaylist, createTracks } = require("./track");
 
 const getPlaylistById = async (playlistId) => {
   const playlist = await Playlists.findOne({
@@ -48,6 +48,10 @@ const createPlaylist = async (UserId, playlistInfo) => {
     UserId,
     ...playlistInfo,
   });
+
+  const tracks = await createTracks(playlistInfo.tracks)
+  
+  newPlaylist.tracks = tracks
 
   return newPlaylist;
 };
