@@ -19,7 +19,7 @@ const getPlaylistById = async (playlistId) => {
     message: playlist.message,
     from: playlist.from,
     to: playlist.to,
-    tracks: tracks.tracks,
+    tracks,
     UserId: playlist.UserId,
   };
 

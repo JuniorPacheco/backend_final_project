@@ -19,15 +19,23 @@ const getTracksByPlaylist = async (playlistId) => {
     });
     
     if(tracks.length === 0) return {tracks: []}
-    console.log(JSON.stringify(tracks))
 
     const ids = tracks.map((track) => track.spotifyId).join(",")
-    console.log({ids})
+
     const config = await getConfig()
 
     const {data} = await axios.get(`https://api.spotify.com/v1/tracks?ids=${ids}`, config)
-    console.log({data})
-    return data
+
+    const tracksFormat = data.tracks.map((track, index) => {
+      if(track === null) return null
+      return {
+        ...track,
+        spotifyId: track.id,
+        id: tracks[index].id
+      }
+    })
+
+    return tracksFormat
   }catch(err){
     return err
   }
