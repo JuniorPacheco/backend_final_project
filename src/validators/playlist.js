@@ -30,6 +30,14 @@ const validatorCreatePlaylist = [
     .withMessage("This field cannot be blank")
     .isLength({ max: 50 })
     .withMessage("The maximum length is 50 characters."),
+  check("tracks")
+    .exists()
+    .withMessage("This field is required")
+    .isArray()
+    .withMessage("This field only accepts an array"),
+  check("tracks.*.id")
+    .exists()
+    .withMessage("Each array position must have an id"),
   (req, res, next) => validationResults(req, res, next),
 ];
 

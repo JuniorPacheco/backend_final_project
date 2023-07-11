@@ -12,8 +12,9 @@ const getPlaylistById = async (playlistId) => {
   if (!playlist) return null;
 
   const tracks = await getTracksByPlaylist(playlistId);
-
+  console.log({tracks})
   const responsePlaylist = {
+    id: playlist.id,
     title: playlist.title,
     message: playlist.message,
     from: playlist.from,
@@ -49,11 +50,18 @@ const createPlaylist = async (UserId, playlistInfo) => {
     ...playlistInfo,
   });
 
-  const tracks = await createTracks(playlistInfo.tracks)
+  const tracks = await createTracks(playlistInfo.tracks, newPlaylist.id)
   
-  newPlaylist.tracks = tracks
+  const response = {
+    id: newPlaylist.id,
+    title: newPlaylist.title,
+    message: newPlaylist.message,
+    from: newPlaylist.from,
+    to: newPlaylist.to,
+    tracks,
+  }
 
-  return newPlaylist;
+  return response;
 };
 
 const deletePlaylist = async (playlistId) => {

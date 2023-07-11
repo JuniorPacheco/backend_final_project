@@ -60,7 +60,7 @@ const create = async (req, res) => {
 
     return res
       .status(200)
-      .json({ message: `playlist: ${response.title}, created successfully` });
+      .json({ message: `playlist: ${response.title}, created successfully`, info: response });
   } catch (err) {
     return res.status(500).json({ message: err });
   }
