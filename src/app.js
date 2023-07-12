@@ -5,6 +5,7 @@ const db = require("./config/db");
 const initModels = require("./models/initModels");
 const generateData = require("./config/initDB");
 const { rateLimit } = require("express-rate-limit");
+const patch = require("path")
 
 const port = process.env.PORT || 3000;
 
@@ -19,6 +20,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(limiter);
+
+app.get("/", (req, res) => {
+  res.sendFile(patch.resolve(__dirname, "./layout/responseHome.html"))
+})
 
 app.use("/api", require("./routes"));
 
