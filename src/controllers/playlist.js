@@ -17,7 +17,6 @@ const getPlaylistById = async (playlistId) => {
     id: playlist.id,
     title: playlist.title,
     message: playlist.message,
-    from: playlist.from,
     to: playlist.to,
     tracks,
     UserId: playlist.UserId,
@@ -56,7 +55,6 @@ const createPlaylist = async (UserId, playlistInfo) => {
     id: newPlaylist.id,
     title: newPlaylist.title,
     message: newPlaylist.message,
-    from: newPlaylist.from,
     to: newPlaylist.to,
     tracks,
   }

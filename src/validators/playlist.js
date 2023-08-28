@@ -16,13 +16,6 @@ const validatorCreatePlaylist = [
     .withMessage("This field cannot be blank")
     .isLength({ max: 200 })
     .withMessage("The maximum length is 200 characters."),
-  check("from")
-    .exists()
-    .withMessage("This field is required")
-    .notEmpty()
-    .withMessage("This field cannot be blank")
-    .isLength({ max: 50 })
-    .withMessage("The maximum length is 50 characters."),
   check("to")
     .exists()
     .withMessage("This field is required")
@@ -76,12 +69,6 @@ const validatorEditPlaylistById = [
     .isLength({ max: 200, min: 1 })
     .withMessage(
       "The field must have a value between the range of 1 to 200 characters"
-    ),
-  check("from")
-    .optional()
-    .isLength({ max: 50, min: 1 })
-    .withMessage(
-      "The field must have a value between the range of 1 to 50 characters"
     ),
   check("to")
     .optional()

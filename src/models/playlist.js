@@ -15,11 +15,6 @@ const Playlists = db.define("Playlist", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  from: {
-    type: DataTypes.STRING,
-    allowNull: true,
-    //Falta decir que cuando no venga el nombre entonces que se agregue el nombre del usuario que hizo la petición.
-  },
   to: {
     type: DataTypes.STRING,
     allowNull: true,
