@@ -11,7 +11,7 @@ router.post("/", passport.authenticate("jwt", { session: false }), validatorCrea
 
 router.get("/me", passport.authenticate("jwt", { session: false }), getAllByUser);
 
-router.get("/:id", passport.authenticate("jwt", { session: false }), validatorGetPlaylistById, getById);
+router.get("/:id", validatorGetPlaylistById, getById);
 
 router.patch("/:id", passport.authenticate("jwt", { session: false }), validatorEditPlaylistById, edit);
 

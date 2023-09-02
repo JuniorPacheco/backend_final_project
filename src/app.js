@@ -35,7 +35,7 @@ db.authenticate()
   .then(() => console.log("DataBase Authenticated"))
   .catch((err) => console.log(err));
 
-db.sync({ force: true })
+db.sync({ force: false })
   .then(() => {
     // generateData();
   })
