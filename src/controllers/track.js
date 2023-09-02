@@ -18,7 +18,7 @@ const getTracksByPlaylist = async (playlistId) => {
       },
     });
     
-    if(tracks.length === 0) return {tracks: []}
+    if(tracks.length === 0) return []
 
     const ids = tracks.map((track) => track.spotifyId).join(",")
 
