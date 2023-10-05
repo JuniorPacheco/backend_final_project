@@ -37,7 +37,8 @@ const comprobateGenreSeeds = async (seedGenresString) => {
 
 const getTrackById = async (trackId) => {
   const config = await getConfig();
-
+  
+  console.log("Ingresando--------------------->", config)
   const { data: track } = await axios.get(
     `https://api.spotify.com/v1/tracks/${trackId}`,
     config
