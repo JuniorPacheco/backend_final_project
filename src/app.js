@@ -10,9 +10,9 @@ const patch = require("path")
 const port = process.env.PORT || 3000;
 
 const limiter = rateLimit({
-  windowMs: 5 * 60 * 60 * 1000, // 5 horas
-  max: 1,
-  message: "Too many request, wait 5 hours to continue",
+  windowMs: 1 * 60 * 1000, // 1 min
+  max: 10,
+  message: "Too many request, wait 1 minute to continue",
 });
 
 const app = express();
