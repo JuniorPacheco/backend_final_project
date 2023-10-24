@@ -43,12 +43,12 @@ const getTrackById = async (trackId) => {
     config
   );
 
-  // const { data: relatedSongs } = await axios.get(
-  //   `https://api.spotify.com/v1/recommendations?limit=10&seed_tracks=${track.id}`,
-  //   config
-  // );
+  const { data: relatedSongs } = await axios.get(
+    `https://api.spotify.com/v1/recommendations?limit=10&seed_tracks=${track.id}`,
+    config
+  );
 
-  // track.relatedSongs = relatedSongs.tracks;
+  track.relatedSongs = relatedSongs.tracks;
 
   return track;
 };
