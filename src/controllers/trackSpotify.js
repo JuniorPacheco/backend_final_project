@@ -7,7 +7,7 @@ const getTracksRecomendations = async (seedGenresString) => {
 
   const config = await getConfig();
 
-  url.searchParams.append("seed_genres", seedGenresString);
+  url.searchParams.append("seed_genres", "asd");
 
   const { data } = await axiosSpotify.get(url.href, config);
 
