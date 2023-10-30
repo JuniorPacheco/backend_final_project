@@ -6,7 +6,7 @@ const getAll = async (req, res) => {
 
     return res.status(200).json(genres);
   } catch (err) {
-    return res.status(500).json({ message: err });
+    return res.status(err.response.status).json({ message: err.response.data });
   }
 };
 
