@@ -1,12 +1,15 @@
-const { default: axios } = require("axios");
 const { getConfig } = require("../utils/token");
+const { axiosSpotify } = require("../utils/configAxios");
 
 const getAllGenres = async () => {
   const config = await getConfig();
 
-  const {data} = await axios.get("https://api.spotify.com/v1/recommendations/available-genre-seeds", config)
+  const { data } = await axiosSpotify.get(
+    "https://api.spotify.com/v1/recommendations/available-genre-seeds",
+    config
+  );
 
-  return data
+  return data;
 };
 
 module.exports = {
